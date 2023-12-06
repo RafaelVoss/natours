@@ -14,7 +14,7 @@ const userSchema = new mongoose.Schema({
     minlength: [3, 'A name must have less or equal 3 characters'],
     validate: {
       validator: function (val) {
-        // this only works with the current document, therefore it would not work with update tour
+        // this only works with the current document, therefore it would not work with update user
         // unless the following rule is set: runValidators: true,
         return validator.isAlphanumeric(val.split(' ').join(''));
       },
