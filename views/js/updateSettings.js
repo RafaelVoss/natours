@@ -29,9 +29,11 @@ if (userDataForm || userPasswordForm) {
   
   userDataForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    await updateSettings({name, email}, 'Data');
+    const form = new FormData();
+    form.append('name', document.getElementById('name').value);
+    form.append('email', document.getElementById('email').value);
+    form.append('photo', document.getElementById('photo').files[0]);
+    await updateSettings(form, 'Data');
   });
 
   userPasswordForm.addEventListener('submit', async (e) => {
@@ -42,9 +44,7 @@ if (userDataForm || userPasswordForm) {
     const passwordConfirm = document.getElementById('password-confirm').value;
     await updateSettings({passwordCurrent, password, passwordConfirm}, 'Password');
 
-    document.querySelector('.btn--save-password').textContent = 'SAVE PASSWORD'
-
-    d                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        = '';
+    document.querySelector('.btn--save-password').textContent = 'SAVE PASSWORD';
     document.getElementById('password').value = '';
     document.getElementById('password-confirm').value = '';
   });

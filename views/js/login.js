@@ -1,8 +1,6 @@
 /* eslint-disable*/
 import { showAlert } from './alerts.js';
 
-console.log('funfando!');
-
 const loginForm = document.querySelector('.form--login')
 
 if (loginForm) {
