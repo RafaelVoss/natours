@@ -577,6 +577,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 // npm run watch:js
 /* eslint-disable*/ //import '@babel/polyfill'; =====> test with try catch block!!!!!!!
 var _mapboxJs = require("./mapbox.js");
+var _updateSettingsJs = require("./updateSettings.js");
 // DOM ELEMENTS
 const mapBox = document.getElementById("map");
 // DELEGATION
@@ -585,7 +586,7 @@ if (mapBox) {
     (0, _mapboxJs.displayMap)(locations);
 }
 
-},{"./mapbox.js":"himzi"}],"himzi":[function(require,module,exports) {
+},{"./mapbox.js":"himzi","./updateSettings.js":"iilZ8"}],"himzi":[function(require,module,exports) {
 /* eslint-disable */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "displayMap", ()=>displayMap);
@@ -653,6 +654,111 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}]},["jo1d8","h04kI"], "h04kI", "parcelRequire11c7")
+},{}],"iilZ8":[function(require,module,exports) {
+/* eslint-disable*/ var _alertsJs = require("./alerts.js");
+const userDataForm = document.querySelector(".form-user-data");
+const userPasswordForm = document.querySelector(".form-user-password");
+if (userDataForm || userPasswordForm) {
+    // type is either 'Password' or 'Data'
+    const updateSettings = async (data, type)=>{
+        try {
+            const url = type === "Password" ? "http://127.0.0.1:3000/api/v1/users/updateMyPassword" : "http://127.0.0.1:3000/api/v1/users/updateMe";
+            const res = await axios({
+                method: "PATCH",
+                url,
+                data
+            });
+            if (res.data.status === "success") {
+                (0, _alertsJs.showAlert)("success", `${type} updated successfully!`);
+                window.setTimeout(()=>{
+                    location.assign("/me");
+                }, 1500);
+            }
+        } catch (err) {
+            (0, _alertsJs.showAlert)("error", err.response.data.message);
+        }
+    };
+    userDataForm.addEventListener("submit", async (e)=>{
+        e.preventDefault();
+        const form = new FormData();
+        form.append("name", document.getElementById("name").value);
+        form.append("email", document.getElementById("email").value);
+        form.append("photo", document.getElementById("photo").files[0]);
+        await updateSettings(form, "Data");
+    });
+    userPasswordForm.addEventListener("submit", async (e)=>{
+        e.preventDefault();
+        document.querySelector(".btn--save-password").textContent = "Updating...";
+        const passwordCurrent = document.getElementById("password-current").value;
+        const password = document.getElementById("password").value;
+        const passwordConfirm = document.getElementById("password-confirm").value;
+        await updateSettings({
+            passwordCurrent,
+            password,
+            passwordConfirm
+        }, "Password");
+        document.querySelector(".btn--save-password").textContent = "SAVE PASSWORD";
+        document.getElementById("password").value = "";
+        document.getElementById("password-confirm").value = "";
+    });
+}
+ ///////////////////////////////////////////////////////////////////////
+ // if (userPasswordForm) {
+ //   const updatePassword = async (passwordCurrent, password, passwordConfirm) => {
+ //     try{
+ //       const res = await axios({
+ //         method: 'PATCH',
+ //         url: 'http://127.0.0.1:3000/api/v1/users/updateMyPassword',
+ //         data: {
+ //             passwordCurrent,
+ //             password,
+ //             passwordConfirm
+ //         }
+ //       });
+ //       if (res.data.status === 'success') {
+ //         showAlert('success','Password updated successfully!');
+ //         window.setTimeout(()=> {
+ //           location.assign('/me');
+ //         }, 1500);
+ //       }
+ //     } catch (err) {
+ //       showAlert('error', err.response.data.message);
+ //     };
+ //   };
+ // };
+ // export const updateData = async (name, email) => {
+ //     try {
+ //         const res = await axios({
+ //             method: 'PATCH',
+ //             url: 'http://127.0.0.1:3000/api/v1/users/updateMe',
+ //             data: {
+ //                 name,
+ //                 email
+ //             }
+ //         })
+ //         if (res.data.status === 'success') {
+ //             showAlert('success', 'Data updated successfully!')
+ //         }
+ //     } catch (err) {
+ //         showAlert('error', err.response.data.message);
+ //     };
+ // }
+
+},{"./alerts.js":"auR2C"}],"auR2C":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "showAlert", ()=>showAlert);
+const hideAlert = ()=>{
+    const el = document.querySelector(".alert");
+    if (el) el.parentElement.removeChild(el);
+};
+const showAlert = (type, msg)=>{
+    hideAlert();
+    const markup = `<div class="alert alert--${type}">${msg}</div>`;
+    document.querySelector("body").insertAdjacentHTML("afterbegin", markup);
+    window.setTimeout(hideAlert, 5000);
+}; //module.exports.showAlert = showAlert;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"323t4"}]},["jo1d8","h04kI"], "h04kI", "parcelRequire11c7")
 
 //# sourceMappingURL=index.js.map
