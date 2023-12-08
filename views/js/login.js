@@ -1,4 +1,4 @@
-/* eslint-disable*/
+/* eslint-disable */
 import { showAlert } from './alerts.js';
 
 const loginForm = document.querySelector('.form--login')
