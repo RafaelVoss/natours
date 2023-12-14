@@ -8,7 +8,7 @@ if (loginForm) {
     try{
       const res = await axios({
         method: 'POST',
-        url: '../api/v1/users/login',
+        url: '/api/v1/users/login',
         data: {
             email,
             password
@@ -42,7 +42,7 @@ if (logOutBtn) {
     try{
       const res = await axios({
         method: 'GET',
-        url: '../api/v1/users/logout',
+        url: '/api/v1/users/logout',
       });
       
       if (res.data.status === 'success') location.assign('/');

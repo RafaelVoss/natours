@@ -78,7 +78,7 @@ exports.getAll = (Model) =>
     // To allow for nested GET reviews on tour
     let filter = {};
     if (req.params.tourId) filter = { tour: req.params.tourId };
-    console.log(filter);
+    // console.log(filter);
     //console.log(req.query);
 
     // EXECUTE QUERY

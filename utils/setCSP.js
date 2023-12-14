@@ -19,6 +19,7 @@ exports.setCSP = (req, res, next) => {
           'https://api.mapbox.com/',
           'https://events.mapbox.com/',
           'http://127.0.0.1:3000/api/v1/users/login',
+          'http://127.0.0.1:3000/api/v1/users/updateMe',
           ' https://js.stripe.com/v3/.deploy_status_henson.json',
         ],
         'base-uri': ["'self'"],

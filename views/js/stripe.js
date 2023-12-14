@@ -14,12 +14,12 @@ if (bookBtn) {
       const session = await axios(
         `/api/v1/bookings/checkout-session/${tourId}`
       );
-      console.log(session.data.session.url);
+      // console.log(session.data.session.url);
 
       // 2) Create checkout form + charge credit card
       location.replace(session.data.session.url);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       showAlert('error', err);
     }
   };
