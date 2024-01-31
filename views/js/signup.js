@@ -34,6 +34,6 @@ if (signupForm) {
         const password = document.getElementById('password').value;
         const passwordConfirm = document.getElementById('password__confirm').value;
         signup(name, email, password, passwordConfirm);
-        console.log(name, email, password, passwordConfirm);
+        // console.log(name, email, password, passwordConfirm);
     });
 };

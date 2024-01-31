@@ -11,7 +11,8 @@ module.exports = class Email {
   }
 
   newTransport() {
-    if (process.env.NODE_ENV === 'production') {
+    // FOR NOW E-MAIL IN PRODUCTION IS BEING DISABLED BY MAKING THE IF STATEMENT BELOW ALWAYS FALSE
+    if (process.env.NODE_ENV === 'production' && false) {
       // Brevo
       return nodemailer.createTransport({
         host: 'smtp-relay.brevo.com',
