@@ -12,19 +12,20 @@ module.exports = class Email {
 
   newTransport() {
     // FOR NOW E-MAIL IN PRODUCTION IS BEING DISABLED BY MAKING THE IF STATEMENT BELOW ALWAYS FALSE
-    if (process.env.NODE_ENV === 'production' && false) {
-      // Brevo
+    if (process.env.NODE_ENV === 'production') {
+      // SENDGRID
       return nodemailer.createTransport({
-        host: 'smtp-relay.brevo.com',
-        port: 587,
+        // host: 'smtp.sendgrid.net',
+        // port: 587,
+        service: 'SendGrid',
         auth: {
-          user: process.env.BREVO_USERNAME,
-          pass: process.env.BREVO_PASSWORD,
+          user: process.env.SENDGRID_USERNAME,
+          pass: process.env.SENDGRID_PASSWORD,
         },
-        tls: {
-          // do not fail on invalid certs
-          rejectUnauthorized: false,
-        },
+        // tls: {
+        //   // do not fail on invalid certs
+        //   rejectUnauthorized: false,
+        // },
       });
     }
     // Create a transporter
