@@ -21,6 +21,9 @@ const viewRouter = require('./routes/viewRoutes');
 // Start express app
 const app = express();
 
+// LINE BELOW IS REQUIRED IF USED IN HEROKU
+// app.enable('trust proxy');
+
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 

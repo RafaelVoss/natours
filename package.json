@@ -11,7 +11,7 @@
   },
   "scripts": {
     "start": "nodemon server.js",
-    "start:prod": "NODE_ENV=production nodemon server.js",
+    "start:prod": "SET NODE_ENV=production & nodemon server.js",
     "debug": "ndb server.js",
     "watch:js": "parcel watch ./views/js/index.js --dist-dir ./views/js/bundled",
     "build": "parcel build ./views/js/index.js --dist-dir ./views/js/bundled"
@@ -39,7 +39,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.4",
     "pug": "^3.0.2",
-    "sharp": "^0.33.1",
+    "sharp": "^0.33.2",
     "slugify": "^1.6.6",
     "stripe": "^14.7.0",
     "validator": "^13.9.0",

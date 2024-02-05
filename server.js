@@ -48,3 +48,10 @@ process.on('unhandledRejection', (err) => {
     process.exit(1); // on production there will be tools to restart the crashed app
   });
 });
+
+process.on('SIGTERM', () => {
+  console.log('SIGTERM RECIEVED. Shutting down gracefully.');
+  server.close(() => {
+    console.log('Process termineted!');
+  })
+})
