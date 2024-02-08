@@ -49,6 +49,6 @@ if(s){let e=JSON.parse(s.dataset.locations);(e=>{mapboxgl.accessToken="pk.eyJ1Ij
 let o=document.createElement("div");o.className="marker",// Add marker
 new mapboxgl.Marker({element:o,anchor:"bottom"}).setLngLat(e.coordinates).addTo(t),// Add popup
 new mapboxgl.Popup({offset:30}).setLngLat(e.coordinates).setHTML(`<p>Day ${e.day}: ${e.description}</p>`).addTo(t),// Extend map bounds to include current location
-a.extend(e.coordinates)}),t.fitBounds(a,{padding:{top:200,bottom:150,left:100,right:100}})})(e)}const n=document.querySelector("body").dataset.alert;alert&&showAllert("success",n,20);//# sourceMappingURL=index.js.map
+a.extend(e.coordinates)}),t.fitBounds(a,{padding:{top:200,bottom:150,left:100,right:100}})})(e)}const n=document.querySelector("body").dataset.alert;n&&t("success",n,20);//# sourceMappingURL=index.js.map
 
 //# sourceMappingURL=index.js.map
