@@ -1,4 +1,5 @@
 node_modules/
 starter/
 .parcel-cache/
+.parcel-cache/data.mdb
 *.env
