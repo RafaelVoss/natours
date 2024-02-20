@@ -37,7 +37,7 @@ app.use(cors());
 app.options('*', cors());
 
 // Serving static files
-app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Set security http headers
 app.use(CSP.setCSP());
